@@ -15,21 +15,13 @@ as well as wrappers that provides interfaces for simple integration.
 This is a low area implementation that iterates over the rounds but
 there is no sharing of operations such as adders.
 
-The hardware implementation is complemented by a functional model
-written in Python.
+
 
 Note that the core does **NOT** implement padding of final block. The
 caller is expected to handle padding.
 
 
-## FuseSoC
-This core is supported by the
-[FuseSoC](https://github.com/olofk/fusesoc) core package manager and
-build system. Some quick  FuseSoC instructions:
 
-install FuseSoC
-~~~
-pip install fusesoc
 ~~~
 
 Create and enter a new workspace
@@ -45,27 +37,14 @@ fusesoc library add aes /path/to/aes
 ...if repo is available locally or...
 ...to get the upstream repo
 ~~~
-fusesoc library add aes https://github.com/secworks/aes
-~~~
+
 
 To run lint
 ~~~
-fusesoc run --target=lint secworks:crypto:aes
+
 ~~~
 
-Run tb_aes testbench
-~~~
-fusesoc run --target=tb_aes secworks:crypto:aes
-~~~
 
-Run with modelsim instead of default tool (icarus)
-~~~
-fusesoc run --target=tb_aes --tool=modelsim secworks:crypto:aes
-~~~
-
-List all targets
-~~~
-fusesoc core show secworks:crypto:aes
 ~~~
 
 
@@ -117,20 +96,7 @@ There is a streaming interface for the core contributed by
 - src/interfaces/stream/tb - Testbench for the wrapped core
 
 
-## AXI4 interface ##
-
-**NOTE** This interface is currently being developed. Expect bugs as this
-interface is still under development.
-
-There is now an AXI4 interface for the core contributed by
-[Sanjay A Menon](https://github.com/Sanjay-A-Menon). The interface wraps
-sha256_core, replacing sha256.v
-
-The interface provides an AXI4-Lite slave interface with added hash
-complete interrupt signal. Chip select is implemented via axi_awprot
-signal.
-
-- src/interfaces/axi4/rtl - RTL source file for wrapped core
+re
 - src/interfaces/axi4/tb  - Testbench for the wrapped core
 
 
